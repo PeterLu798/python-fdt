@@ -492,3 +492,196 @@ tt = (3, 5, [99, 88, 77], 6)
 tt[2][0] = 66
 print(tt)  # (3, 5, [66, 88, 77], 6)
 ````
+## [Code06_Dictionary.py](Code06_Dictionary.py)
+### 字典
+就是HashMap
+````python
+# 定义字典
+dic1 = {}
+dic2 = {"name": "ll", "age": 18}
+dic3 = dict()
+````
+#### 字典增删改查
+````python
+dic3 = dict()
+
+# 添加元素
+dic3["id"] = 1
+dic3["name"] = "Lucy"
+print(dic3)  # {'id': 1, 'name': 'Lucy'}
+
+# 修改元素
+dic3["name"] = "Peter"
+print(dic3)  # {'id': 1, 'name': 'Peter'}
+
+# 查找
+print(dic3["name"])  # Peter
+
+# 删除元素
+del dic3["name"]
+print(dic3)  # {'id': 1}
+
+# 清空字典
+dic3.clear()
+print(dic3)  # {}
+````
+#### 字典常用操作
+1. len
+````python
+map = {"id": 2}
+print(len(map))  # 1
+````
+2. keys()、values()
+````python
+map = {"id": 2, "age": 20, "name": "MyName"}
+keys = map.keys()
+for k in keys:
+    print(k)
+
+values = map.values()
+for v in values:
+    print(v)
+````
+3. items()   
+一对一对的遍历
+```python
+map = {"id": 2, "age": 20, "name": "MyName"}
+items = map.items()
+for key, value in items:
+    print(key, value)
+
+# 输出如下
+# id 2
+# age 20
+# name MyName
+```
+## [Code07_Set.py](Code07_Set.py)
+### 集合
+相当于Java中的Set集合，元素无序且不重复
+#### 集合的定义
+````python
+# 定义集合
+s1 = {10, 20, 30}
+print(type(s1))  # <class 'set'>
+# 字符串转集合
+s2 = set("hello")
+print(s2)  # {'h', 'l', 'o', 'e'}
+# 定义一个空集合
+s3 = set()
+````
+#### 集合添加元素
+1. add()
+````python
+s3 = set()
+s3.add("zoo")
+s3.add(1)
+s3.add(1)  # 自动去重
+print(s3)  # {'zoo', 1}
+````
+2. update(obj)：obj必须是可迭代对象（列表、集合、字典、元组等）   
+当update的元素是字典时，只添加key
+````python
+s4 = set()
+s4.update([10, 11])
+s4.update((12, 56))
+print(s4)  # {56, 10, 11, 12}
+s4.update({"name": "Pe"})
+print(s4)  # {56, 10, 11, 12, 'name'}
+````
+#### 集合删除元素
+1. remove(obj): 删除指定元素，如果不存在则报错
+2. discard(obj): 删除指定元素，如果不存在不会报错
+3. pop(): 随机删除一个元素，返回删除的元素
+#### 交集、并集
+````python
+l = {1, 2, 3, 4}
+m = {3, 4, 5, 6}
+# 求交集
+print(l & m)  # {3, 4}
+# 求并集
+print(l | m)  # {1, 2, 3, 4, 5, 6}
+````
+## 阶段总结
+### 运算符
+|运算符|描述|支持的容器类型|
+|:----|:----|:----|
+|+|合并|字符串、列表、元组|
+|*|复制|字符串、列表、元组|
+|in|元素是否存在|字符串、列表、元组、字典|
+|not in|元素是否不存在|字符串、列表、元组、字典|
+### 公共方法
+|公共方法|描述|支持的容器类型|
+|:----|:----|:----|
+|len|求长度，即元素个数|字符串、列表、元组、字典、集合|
+|max|求最大元素|列表、元组、集合|
+|min|求最小值|列表、元组、集合|
+|enumerate|将下标和数据一一列出来|列表、元组|
+
+## [Code08.py](Code08.py)
+### 类型转换
+1. 转字符串：str(o)
+2. 转列表：list(o)
+3. 转元组：tuple(o)
+4. 转集合：set(o)
+5. 转字典：dict(o)
+```python
+int = 5
+# 整数转为字符串
+s = str(5)
+# 字符串转为list
+l = list(s)
+# 字符串转为元组
+tu = tuple(s)
+# 字符串转为集合
+set1 = set(s)
+# list转为字符串
+se = str(l)
+# list转元组
+tu1 = tuple(l)
+# list转集合
+se1 = set(tu1)
+
+# 转字典（特殊）
+x = ["a1", "b1", "c1", "d1"]
+y = ["a2", "b2", "b3"]
+z = zip(x, y)
+print(dict(z))
+```
+### 深浅拷贝
+1. 深拷贝   
+1.1 数值类型、字符串类型当值相等时，两个变量公用一个内存地址
+1.2 列表、集合等类型变量赋值操作会使内存地址一致
+````python
+a = 10
+b = 10
+print(id(a))  # 140705617148632
+print(id(b))  # 140705617148632
+s = "hello"
+t = "hello"
+print(id(s))  # 2905618815600
+print(id(t))  # 2905618815600
+
+l = [1, 2, 3]
+m = l
+print(id(l))  # 2221094530688
+print(id(m))  # 2221094530688
+````
+2. 浅拷贝   
+使用copy模块   
+````python
+import copy
+
+u = [1, 2, 3]
+v = copy.copy(u)
+print(id(u))  # 2444626097664
+print(id(v))  # 2444626493056
+````
+### 不可变对象
+简单说就是当修改了变量的值之后，变量的内存地址也会发生改变，这样的数据类型就是不可变的。  
+python中数值类型、string类型、元组都是不可变对象。   
+### 可变对象
+那就是当修改了变量的值之后，变量的内存地址不会发生改变。  
+python中列表、集合、字典都是可变对象
+
+## [Code09_Function.py](Code09_Function.py)
+### 函数
