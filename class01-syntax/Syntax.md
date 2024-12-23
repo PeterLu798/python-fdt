@@ -1,5 +1,5 @@
 # 语法基础
-## Code01.py
+## [Code01.py](Code01.py)
 ### 注释
 ```python
 # 单行注释
@@ -72,7 +72,7 @@ name = "Wil"
 print(f'My name is {name}, my age is {age}')
 ```
 
-## Code02.py
+## [Code02.py](Code02.py)
 ### 转义字符
 ### 运算符
 1. // 取整除，返回除法的整数部分（商）。例如9//2=4  
@@ -142,7 +142,7 @@ print(sum)
 1. break关键字：和Java同理
 2. continue关键字：和Java同理  
 
-## Code03.py
+## [Code03_Str.py](Code03_Str.py)
 ### 字符串
 #### 字符编码
 字符编码的本质是二进制数据与语言文字的一一对应关系  
@@ -300,3 +300,195 @@ print("*".join(code))  # p*y*t*h*o*n
 删除字符串开头的空格
 18. rstrip()  
 删除字符串末尾的空格 
+
+## [Code04_List.py](Code04_List.py)
+### 列表
+#### 列表基本性质
+1. 列表的定义：中括号包围所有元素，每个元素间用逗号分割
+2. 列表的性质：有序、存储多个元素，元素可以是不同类型
+3. 列表的下标从左往右是从0开始，也可以倒着来，即从右往左从-1开始
+4. 索引超出列表长度会报错
+```python
+li = ["a", "b", 121, "hello"]
+print(li[1])  # b
+print(li[-2])  # 121
+print(li[10])  # IndexError: list index out of range
+```
+#### 列表的遍历
+1. for循环遍历
+````python
+li = ["a", "b", 121, "hello"]
+for i in li:
+    print(i)
+````
+2. while循环遍历
+````python
+li = ["a", "b", 121, "hello"]
+i = 0
+while i < len(li):
+    print(li[i])
+    i += 1
+````
+#### 列表添加元素
+1. 直接相加：+
+````python
+language = ["Python", "Java", "C++"]
+numList = [1990, 1222, 5554]
+language = language + numList
+print(language)  # ['Python', 'Java', 'C++', 1990, 1222, 5554]
+````
+2. insert(index, obj): 在index前面插入obj元素    
+2.1 当index是正数时，会在index下标处插入元素    
+2.2 当index是负数时，会在index前面插入元素  
+2.3 当index大于列表长度时，会在首/尾插入元素  
+2.4 元组会作为一个整体插入   
+````python
+language = ["Python", "Java", "C++"]
+language.insert(1, "Go")
+language.insert(10, "C#")
+language.insert(-1, "JS")
+language.insert(-10, "html")
+print(language)  # ['html', 'Python', 'Go', 'Java', 'C++', 'JS', 'C#']
+t = ("Shell", "C")
+language.insert(0, t)
+print(language)  # [('Shell', 'C'), 'html', 'Python', 'Go', 'Java', 'C++', 'JS', 'C#']
+````
+3. append(obj): 直接在列表末尾添加元素
+4. extend(obj): 也是在末尾添加元素，但是会识别obj中的元素拆分成单个的
+````python
+li1 = ["aaa", "bbb"]
+li2 = ["ddd", "tttt"]
+li1.append(li2)
+print(li1)  # ['aaa', 'bbb', ['ddd', 'tttt']]
+li1.extend(li2)
+print(li1)  # ['aaa', 'bbb', ['ddd', 'tttt'], 'ddd', 'tttt']
+````
+#### 列表修改元素
+修改元素的本质就是赋值   
+1. 修改单个元素  
+````python
+breakfast = ["豆浆", "油条"]
+breakfast[0] = "豆腐脑"
+print(breakfast)  # ['豆腐脑', '油条']
+````
+2. 修改一组元素：<font color = red>注意左闭右开</font>
+
+````python
+breakfast = ["豆浆", "油条", "包子", "馒头"]
+breakfast[1:4] = ["鸡蛋"]  # 左闭右开
+print(breakfast)  # ['豆浆', '鸡蛋']
+````
+3. 对空切片赋值操作
+
+````python
+breakfast = ["豆浆", "油条", "包子", "馒头"]
+breakfast[2:2] = ["鸡蛋"]  # 左闭右开
+print(breakfast)  # ['豆浆', '油条', '鸡蛋', '包子', '馒头']
+````
+#### 列表删除元素
+1. del
+````python
+r = list("hello")
+print(r)  # ['h', 'e', 'l', 'l', 'o']
+del r[0]
+print(r)  # ['e', 'l', 'l', 'o']
+del r[0:2]  # 左闭右开
+print(r)  # ['l', 'o']
+del r
+print(r)  # NameError: name 'r' is not defined
+````
+2. pop(index)：下标删除，如果不填下标则默认删除列表中最后一个元素
+````python
+nums = [1, 2, 3, 4, 5]
+p = nums.pop()
+print(p)  # 5
+print(nums)  # [1, 2, 3, 4]
+````
+3. remove(obj)
+````python
+mm = ["Hello", "world", "you"]
+mm.remove("you")
+print(mm)  # ['Hello', 'world']
+````
+4. clear：删除所有元素
+````python
+mm = ["Hello", "world", "you"]
+mm.clear()
+print(mm)  # []
+````
+#### 列表查找元素
+1. in/not in
+````python
+find = ["Hello", "world", "you"]
+print("he" in find)  # False
+print("you" in find)  # True
+print("lla" not in find)  # True
+````
+2. count(obj)：统计obj元素出现在列表中的次数   
+可用此方法来判断某个元素是否在列表中  
+3. index(obj, start, end)：查找obj元素在列表中的索引位置，如果元素不存在则报错
+````python
+find = ["Hello", "world", "you"]
+print(find.index("he"))  # ValueError: 'he' is not in list
+````
+#### 列表排序
+1. reverse
+````python
+kk = [1, 2, 3, 4]
+kk.reverse()
+print(kk)  # [4, 3, 2, 1]
+````
+2. sort()  
+2.1 只能用于列表排序   
+2.2 会直接改变原列表的顺序
+````python
+hh = [5, 2, 65, 4, 8, 1]
+hh.sort()  # 默认从小到大
+print(hh)  # [1, 2, 4, 5, 8, 65]
+hh.sort(reverse=True)  # 从大到小
+print(hh)  # [65, 8, 5, 4, 2, 1]
+````
+3. sorted()     
+3.1 python内置的   
+3.2 不会修改原数组的值
+````python
+ff = [1, 4, 2, 9, 3]
+ff1 = sorted(ff)
+print(ff)  # [1, 4, 2, 9, 3]
+print(ff1)  # [1, 2, 3, 4, 9]
+````
+#### 列表推导式
+````python
+# 给列表中的每个元素都乘以2
+dd = [1, 2, 3, 4]
+print([i * 2 for i in dd])  # [2, 4, 6, 8]
+````
+## [Code05_Tuple.py](Code05_Tuple.py)
+### 元组
+元组是不可变的list类型，不可以增删改。   
+意义：因为元组不支持增删改，所以提高了代码编写的安全性，如果有只读场景，可以考虑使用元组。    
+#### 元组的定义   
+定义单个元素的元组时要加逗号
+````python
+# 元组的定义
+tup = (1, 3, 4)
+# 定义单个元素的元组时要加逗号
+tup1 = (1)
+print(type(tup1))  # <class 'int'>
+tup1 = (1,)
+print(type(tup1))  # <class 'tuple'>
+````
+#### 元组的操作
+1. count
+2. index
+3. len
+```python
+tup1 = (1,)
+print(len(tup1))  # 1
+```
+4. 元组”可变“的情况
+````python
+tt = (3, 5, [99, 88, 77], 6)
+tt[2][0] = 66
+print(tt)  # (3, 5, [66, 88, 77], 6)
+````
