@@ -685,3 +685,73 @@ python中列表、集合、字典都是可变对象
 
 ## [Code09_Function.py](Code09_Function.py)
 ### 函数
+#### 函数的定义
+1. 函数与方法的区别：函数是直接调用的，方法是对象调用的，是类里面的
+2. 如果函数有多个返回值，那么将作为一个元组类型被返回
+````python
+# 定义函数
+def sayHello():
+    print("Hello world")
+
+
+# 函数的调用
+sayHello()
+
+
+# 函数的返回值
+def funa():
+    return 10
+
+
+print(funa())
+
+
+# 多返回值
+def funb():
+    return 10, {"name": "Pe"}, [1, 2, 3]
+
+
+f = funb()
+print(type(f))  # <class 'tuple'>
+````
+#### 函数的参数
+1. 必填参数
+2. 默认参数
+3. 可选参数
+4. 关键字参数
+5. 命名关键字参数：*,后面的都是命名关键字参数，调用的时候要加key
+````python
+# 必填参数
+def add(x, y):
+    return x + y
+
+
+# 默认参数
+def encodefun(string, character="utf-8"):
+    return string.encode(character)
+
+
+# 不定长参数
+def func(*args):
+    print(type(args))  # <class 'tuple'>
+
+
+func(1, 22, 4, 2)
+
+
+# 关键字参数
+def fund(**kwargs):
+    print(kwargs)
+    print(type(kwargs))
+
+
+fund(name="Peter", age=18)
+
+
+# 命名关键字参数
+def person(name, age, *, city, job):
+    print(name, age, city, job)
+
+
+person("Peter", 19, city="beijing", job="coder")
+````
