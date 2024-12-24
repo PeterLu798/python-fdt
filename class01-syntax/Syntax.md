@@ -755,3 +755,171 @@ def person(name, age, *, city, job):
 
 person("Peter", 19, city="beijing", job="coder")
 ````
+#### 作用域
+1. 名称空间   
+1.1 内置名称空间：随着python解释器启动而产生，停止而回收。第一个被加载  
+1.2 全局的名称空间：随着所在执行文件启动而产生，执行结束而回收，第二个被加载  
+1.3 局部名称空间：随着函数的调用而产生，结束而回收。如函数的参数、函数内定义的变量   
+2. 全局作用域：包含内置命名空间和全局命名空间   
+3. 局部作用域：包含局部命名空间，在函数内可以使用的  
+4. Python查找变量的顺序：局部命名空间-> 全局命名空间-> 内置命名空间   
+#### 全局变量和局部变量
+````python
+cup = 100  # 全局变量
+
+
+def fune():
+    cup = 200  # 局部变量
+    print(f"fune print {cup}")  # fune print 200
+
+
+def funf():
+    print(f"funf print {cup}")  # funf print 100
+
+
+fune()
+funf()
+````
+global 关键字
+````python
+cup = 100  # 全局变量
+
+
+def fune():
+    global cup
+    cup = 200  # 全局变量
+    print(f"fune print {cup}")  # fune print 200
+
+
+def funf():
+    print(f"funf print {cup}")  # funf print 200
+
+
+fune()
+funf()
+````
+nonlocal 关键字
+````python
+water = 500
+
+
+def fung():
+    water = 700
+
+    def funh():
+        nonlocal water  # 申明water为外层的局部变量 即water=700
+        print(f"funh print {water}")  # funh print 700
+        water = 900
+
+    funh()
+    print(f"fung print {water}")  # fung print 900
+
+
+fung()
+print(f"water={water}")  # water=500
+````
+#### 匿名函数
+````python
+funadd = lambda x, y: x + y
+print(funadd(4, 5))  # 9
+````
+ifelse的lambda用法  
+````python
+funk = lambda x, y: x if x > y else y
+print(funk(4, 5))  # 5
+````
+#### 内置函数
+1. abs(num) 求绝对值
+2. sum(a,b,c...) 求和
+3. zip 拉链函数
+````python
+a = [1, 2, 3, 4]
+b = ["a", "b", "c", "d"]
+z = zip(a, b)
+# 然后就可以将z转成各种数据类型
+print(dict(z))  # 转map {1: 'a', 2: 'b', 3: 'c', 4: 'd'}
+# print(list(z))#转list [(1, 'a'), (2, 'b'), (3, 'c'), (4, 'd')]
+# print(set(z))  # 转集合 {(4, 'd'), (2, 'b'), (3, 'c'), (1, 'a')}
+````
+4. map(fun, 可迭代对象)：映射函数，对可迭代对象中的每个元素进行映射，分别去执行函数fun
+````python
+funm = lambda x: x * x
+li = [1, 2, 4, 8]
+print(list(map(funm, li)))  # [1, 4, 16, 64]
+````
+5. reduce(fun, 可迭代对象)：对可迭代对象中的元素进行累计计算，执行函数fun
+````python
+from functools import reduce
+
+li = [1, 2, 3, 4]
+funadd = lambda x, y: x + y
+print(reduce(funadd, li))  # 10
+````
+6. enumerate(可迭代对象)：用于将一个可迭代的对象组合为一个索引序列，同时列出数据和数据下标，一般用在for循环当中
+````python
+li = [1, 2, 3, 4]
+for i, num in enumerate(li):
+    print(i, num)
+````
+#### 拆包
+````python
+# 拆包
+def funl():
+    return 1, 2, 3
+
+
+a, b, c = funl()  # funl() 返回的是一个元组类型，这里将元组进行拆包
+print(a, b, c)
+
+# 元组拆包升级版
+tu = (1, 2, 3, 4)
+a, *b, c = tu  # 多变量赋值
+print(f"a={a}")  # a=1
+print(f"b={b}")  # b=[2, 3]
+print(f"c={c}")  # c=4
+
+# 列表拆包
+li = [1, 2, 3, 4]
+a, *b, c = li
+print(f"a={a}")  # a=1
+print(f"b={b}")  # b=[2, 3]
+print(f"c={c}")  # c=4
+
+# 字典拆包
+map = {"name": "Peter", "age": 18}
+a, b = map  # 对字典拆包只有键，没有值
+print(a, b)  # name age
+````
+#### 异常捕获
+````python
+# 异常捕获
+def funm():
+    print(hsfgss)
+
+
+try:
+    funm()
+except Exception as e:
+    print(f"发生异常：{e}")
+else:
+    print("没有发生异常，就会执行else模块")
+finally:
+    print("不管是否发生异常，都会执行的模块")
+````
+#### 抛出异常
+raise抛出异常
+````python
+def inputpwd():
+    pwd = input("请输入长度超过6位的密码：")
+    if (len(pwd) < 6):
+        raise Exception("密码长度不足6位")
+    return pwd
+
+
+try:
+    pwd = inputpwd()
+    print(f"用户输入的密码为：{pwd}")
+except Exception as e:
+    print("发生异常：", e)
+````
+
