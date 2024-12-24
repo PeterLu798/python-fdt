@@ -922,4 +922,102 @@ try:
 except Exception as e:
     print("发生异常：", e)
 ````
+## [Code10_Module.py](Code10_Module.py)
+### 模块
+#### 内置模块
+````python
+# 查看内置模块
+import builtins
 
+print(dir(builtins))
+````
+#### 第三方库
+使用命令行导入：pip install 模块名   
+使用PyCharm开发时，安装第三方库步骤如下：   
+File -> Settings -> File -> Interpreter
+![pipinstall.png](pipinstall.png)
+#### 自定义模块
+```python
+# 自定义模块
+import tools.Timetools as timetools
+
+print(timetools.now())
+print(timetools.my_time_zone)
+```
+#### __name__和__main__
+
+### 包
+没啥可讲的
+
+## [Code11.py](Code11.py)
+### 递归函数
+```python
+# 0——x累加
+def funa(x):
+    if x == 0:
+        return 0
+    return funa(x - 1) + x
+
+print(funa(3))
+```
+### 函数的引用
+````python
+def funa(x):
+    if x == 0:
+        return 0
+    return funa(x - 1) + x
+
+print(funa(3))
+res = funa  # 函数引用，就相当于给funa起了个别名
+print(res(3))
+````
+### 闭包
+### 装饰器   
+为什么使用装饰器？    
+可以对不同的函数进行装饰，而避免直接修改业务代码。
+````python
+def logger(func):
+    def wrapper(*args):
+        print(f"开始执行函数 {func.__name__}")
+        return func(*args)
+
+    print(f"函数 {func.__name__} 执行完毕")
+    return wrapper  # 装饰器必须返回内部方法名
+
+def add(x, y):
+    return x + y
+
+fn = logger(add)
+print(fn(10, 20))
+````
+装饰器的语法糖使用方式：
+````python
+def logger(func):
+    def wrapper(*args):
+        print(f"开始执行函数 {func.__name__}")
+        return func(*args)
+
+    print(f"函数 {func.__name__} 执行完毕")
+    return wrapper  # 装饰器必须返回内部方法名
+
+@logger
+def add(x, y):
+    return x + y
+@logger
+def printm(x, y, z):
+    print(x, y, z)
+
+print(add(10, 20))
+printm(1, 2, 3)
+````
+### 回调函数
+```python
+call = lambda: print("call")
+
+def funx(fun, *args):
+    print(f"处理逻辑 {args}")
+    # 处理完毕调用回调函数
+    fun()
+
+funx(call)
+```
