@@ -1,12 +1,12 @@
 - [语法基础](#%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80)
-  * [Code01.py](#code01py)
+  * [code01.py](#code01py)
     + [注释](#%E6%B3%A8%E9%87%8A)
     + [输出](#%E8%BE%93%E5%87%BA)
     + [变量](#%E5%8F%98%E9%87%8F)
     + [数值类型](#%E6%95%B0%E5%80%BC%E7%B1%BB%E5%9E%8B)
     + [字符串](#%E5%AD%97%E7%AC%A6%E4%B8%B2)
     + [格式化输出](#%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%87%BA)
-  * [Code02.py](#code02py)
+  * [code02.py](#code02py)
     + [转义字符](#%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6)
     + [运算符](#%E8%BF%90%E7%AE%97%E7%AC%A6)
     + [类型转换](#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2)
@@ -17,66 +17,66 @@
     + [while循环](#while%E5%BE%AA%E7%8E%AF)
     + [range函数](#range%E5%87%BD%E6%95%B0)
     + [for循环](#for%E5%BE%AA%E7%8E%AF)
-  * [Code03_Str.py](#code03_strpy)
-    + [字符串](#%E5%AD%97%E7%AC%A6%E4%B8%B2-1)
-      - [字符编码](#%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81)
-      - [几种字符编码](#%E5%87%A0%E7%A7%8D%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81)
-      - [encode编码](#encode%E7%BC%96%E7%A0%81)
-      - [decode解码](#decode%E8%A7%A3%E7%A0%81)
-      - [索引](#%E7%B4%A2%E5%BC%95)
-      - [切片](#%E5%88%87%E7%89%87)
-      - [字符串的常用操作](#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C)
-  * [Code04_List.py](#code04_listpy)
-    + [列表](#%E5%88%97%E8%A1%A8)
-      - [列表基本性质](#%E5%88%97%E8%A1%A8%E5%9F%BA%E6%9C%AC%E6%80%A7%E8%B4%A8)
-      - [列表的遍历](#%E5%88%97%E8%A1%A8%E7%9A%84%E9%81%8D%E5%8E%86)
-      - [列表添加元素](#%E5%88%97%E8%A1%A8%E6%B7%BB%E5%8A%A0%E5%85%83%E7%B4%A0)
-      - [列表修改元素](#%E5%88%97%E8%A1%A8%E4%BF%AE%E6%94%B9%E5%85%83%E7%B4%A0)
-      - [列表删除元素](#%E5%88%97%E8%A1%A8%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0)
-      - [列表查找元素](#%E5%88%97%E8%A1%A8%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0)
-      - [列表排序](#%E5%88%97%E8%A1%A8%E6%8E%92%E5%BA%8F)
-      - [列表推导式](#%E5%88%97%E8%A1%A8%E6%8E%A8%E5%AF%BC%E5%BC%8F)
-  * [Code05_Tuple.py](#code05_tuplepy)
-    + [元组](#%E5%85%83%E7%BB%84)
-      - [元组的定义](#%E5%85%83%E7%BB%84%E7%9A%84%E5%AE%9A%E4%B9%89)
-      - [元组的操作](#%E5%85%83%E7%BB%84%E7%9A%84%E6%93%8D%E4%BD%9C)
-  * [Code06_Dictionary.py](#code06_dictionarypy)
-    + [字典](#%E5%AD%97%E5%85%B8)
-      - [字典增删改查](#%E5%AD%97%E5%85%B8%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5)
-      - [字典常用操作](#%E5%AD%97%E5%85%B8%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C)
-  * [Code07_Set.py](#code07_setpy)
-    + [集合](#%E9%9B%86%E5%90%88)
-      - [集合的定义](#%E9%9B%86%E5%90%88%E7%9A%84%E5%AE%9A%E4%B9%89)
-      - [集合添加元素](#%E9%9B%86%E5%90%88%E6%B7%BB%E5%8A%A0%E5%85%83%E7%B4%A0)
-      - [集合删除元素](#%E9%9B%86%E5%90%88%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0)
-      - [交集、并集](#%E4%BA%A4%E9%9B%86%E5%B9%B6%E9%9B%86)
+  * [字符串](#%E5%AD%97%E7%AC%A6%E4%B8%B2-1)
+    + [code03_str.py](#code03_strpy)
+    + [字符编码](#%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81)
+    + [几种字符编码](#%E5%87%A0%E7%A7%8D%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81)
+    + [encode编码](#encode%E7%BC%96%E7%A0%81)
+    + [decode解码](#decode%E8%A7%A3%E7%A0%81)
+    + [索引](#%E7%B4%A2%E5%BC%95)
+    + [切片](#%E5%88%87%E7%89%87)
+    + [字符串的常用操作](#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C)
+  * [列表](#%E5%88%97%E8%A1%A8)
+    + [code04_list.py](#code04_listpy)
+    + [列表基本性质](#%E5%88%97%E8%A1%A8%E5%9F%BA%E6%9C%AC%E6%80%A7%E8%B4%A8)
+    + [列表的遍历](#%E5%88%97%E8%A1%A8%E7%9A%84%E9%81%8D%E5%8E%86)
+    + [列表添加元素](#%E5%88%97%E8%A1%A8%E6%B7%BB%E5%8A%A0%E5%85%83%E7%B4%A0)
+    + [列表修改元素](#%E5%88%97%E8%A1%A8%E4%BF%AE%E6%94%B9%E5%85%83%E7%B4%A0)
+    + [列表删除元素](#%E5%88%97%E8%A1%A8%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0)
+    + [列表查找元素](#%E5%88%97%E8%A1%A8%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0)
+    + [列表排序](#%E5%88%97%E8%A1%A8%E6%8E%92%E5%BA%8F)
+    + [列表推导式](#%E5%88%97%E8%A1%A8%E6%8E%A8%E5%AF%BC%E5%BC%8F)
+  * [元组](#%E5%85%83%E7%BB%84)
+    + [code05_tuple.py](#code05_tuplepy)
+    + [元组的定义](#%E5%85%83%E7%BB%84%E7%9A%84%E5%AE%9A%E4%B9%89)
+    + [元组的操作](#%E5%85%83%E7%BB%84%E7%9A%84%E6%93%8D%E4%BD%9C)
+  * [字典](#%E5%AD%97%E5%85%B8)
+    + [code06_dictionary.py](#code06_dictionarypy)
+    + [字典增删改查](#%E5%AD%97%E5%85%B8%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5)
+    + [字典常用操作](#%E5%AD%97%E5%85%B8%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C)
+  * [集合](#%E9%9B%86%E5%90%88)
+    + [code07_set.py](#code07_setpy)
+    + [集合的定义](#%E9%9B%86%E5%90%88%E7%9A%84%E5%AE%9A%E4%B9%89)
+    + [集合添加元素](#%E9%9B%86%E5%90%88%E6%B7%BB%E5%8A%A0%E5%85%83%E7%B4%A0)
+    + [集合删除元素](#%E9%9B%86%E5%90%88%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0)
+    + [交集、并集](#%E4%BA%A4%E9%9B%86%E5%B9%B6%E9%9B%86)
   * [阶段总结](#%E9%98%B6%E6%AE%B5%E6%80%BB%E7%BB%93)
     + [运算符](#%E8%BF%90%E7%AE%97%E7%AC%A6-1)
     + [公共方法](#%E5%85%AC%E5%85%B1%E6%96%B9%E6%B3%95)
-  * [Code08.py](#code08py)
+  * [code08.py](#code08py)
     + [类型转换](#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2-1)
     + [深浅拷贝](#%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D)
     + [不可变对象](#%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%AF%B9%E8%B1%A1)
     + [可变对象](#%E5%8F%AF%E5%8F%98%E5%AF%B9%E8%B1%A1)
-  * [Code09_Function.py](#code09_functionpy)
-    + [函数](#%E5%87%BD%E6%95%B0)
-      - [函数的定义](#%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89)
-      - [函数的参数](#%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%82%E6%95%B0)
-      - [作用域](#%E4%BD%9C%E7%94%A8%E5%9F%9F)
-      - [全局变量和局部变量](#%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E5%92%8C%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F)
-      - [匿名函数](#%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0)
-      - [内置函数](#%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0)
-      - [拆包](#%E6%8B%86%E5%8C%85)
-      - [异常捕获](#%E5%BC%82%E5%B8%B8%E6%8D%95%E8%8E%B7)
-      - [抛出异常](#%E6%8A%9B%E5%87%BA%E5%BC%82%E5%B8%B8)
-  * [Code10_Module.py](#code10_modulepy)
-    + [模块](#%E6%A8%A1%E5%9D%97)
-      - [内置模块](#%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97)
-      - [第三方库](#%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93)
-      - [自定义模块](#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9D%97)
-      - [__name__和__main__](#__name__%E5%92%8C__main__)
+  * [函数](#%E5%87%BD%E6%95%B0)
+    + [code09_function.py](#code09_functionpy)
+    + [函数的定义](#%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89)
+    + [函数的参数](#%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%82%E6%95%B0)
+    + [作用域](#%E4%BD%9C%E7%94%A8%E5%9F%9F)
+    + [全局变量和局部变量](#%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E5%92%8C%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F)
+    + [匿名函数](#%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0)
+    + [内置函数](#%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0)
+    + [拆包](#%E6%8B%86%E5%8C%85)
+    + [异常捕获](#%E5%BC%82%E5%B8%B8%E6%8D%95%E8%8E%B7)
+    + [抛出异常](#%E6%8A%9B%E5%87%BA%E5%BC%82%E5%B8%B8)
+  * [模块](#%E6%A8%A1%E5%9D%97)
+    + [code10_module.py](#code10_modulepy)
+    + [内置模块](#%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97)
+    + [第三方库](#%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93)
+    + [自定义模块](#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9D%97)
+    + [__name__和__main__](#__name__%E5%92%8C__main__)
     + [包](#%E5%8C%85)
-  * [Code11.py](#code11py)
+  * [code11.py](#code11py)
     + [递归函数](#%E9%80%92%E5%BD%92%E5%87%BD%E6%95%B0)
     + [函数的引用](#%E5%87%BD%E6%95%B0%E7%9A%84%E5%BC%95%E7%94%A8)
     + [闭包](#%E9%97%AD%E5%8C%85)
@@ -84,7 +84,7 @@
     + [回调函数](#%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0)
 
 # 语法基础
-## [Code01.py](Code01.py)
+## [code01.py](code01.py)
 ### 注释
 ```python
 # 单行注释
@@ -157,7 +157,7 @@ name = "Wil"
 print(f'My name is {name}, my age is {age}')
 ```
 
-## [Code02.py](Code02.py)
+## [code02.py](code02.py)
 ### 转义字符
 ### 运算符
 1. // 取整除，返回除法的整数部分（商）。例如9//2=4  
@@ -227,16 +227,16 @@ print(sum)
 1. break关键字：和Java同理
 2. continue关键字：和Java同理  
 
-## [Code03_Str.py](Code03_Str.py)
-### 字符串
-#### 字符编码
+## 字符串
+### [code03_str.py](code03_str.py)
+### 字符编码
 字符编码的本质是二进制数据与语言文字的一一对应关系  
-#### 几种字符编码
+### 几种字符编码
 1. unicode：兼容万国语言
 2. utf-8：unicode的实现方式之一，优势是对不同的字符用不同的长度来表示
 3. gbk：专门解决中文编码，每个字符占2字节
 4. utf-8中一个英文/数字占用一个字节，一个汉字占3~4个字节
-#### encode编码
+### encode编码
 通过encode编码可以将字符转换为二进制字节流   
 ```python
 str1 = "hello world"
@@ -248,14 +248,14 @@ print(type(stream)) # <class 'bytes'>
 s1 = b"hello"
 print(type(s1)) # <class 'bytes'>
 ```
-#### decode解码
+### decode解码
 通过decode将二进制字节流转换为字符串
 ````python
 # decode解码
 s2 = b"hha"
 print(s2.decode("utf-8"))
 ````
-#### 索引
+### 索引
 字符串中的索引即下标，从0开始
 ```python
 s3 = "abcd"
@@ -268,7 +268,7 @@ s3 = "abcd"
 print(s3[-1]) # d
 print(s3[-2]) # c
 ```
-#### 切片
+### 切片
 字符串切片语法：[起始索引:结束索引:步长]，范围左闭右开，步长默认为1  
 ````python
 name = "class_name_peter"
@@ -281,7 +281,7 @@ print(name[-1:3:-1]) # retep_eman_s
 2. 步长可以控制查找方向，步长为正时表示从左向右定位，步长为负数表示从右往左定位
 3. 切片时索引超出范围不会报错，查找范围截止至最后一位
 4. 索引取值方向和步长方向要保持一致，否则不会取到值
-#### 字符串的常用操作
+### 字符串的常用操作
 1. find(子串, startIndex, endIndex)  
 子串是否在字符串中，如果在返回第一次找到时的索引值，否则返回-1   
 可以通过startIndex、endIndex指定查找范围
@@ -386,9 +386,9 @@ print("*".join(code))  # p*y*t*h*o*n
 18. rstrip()  
 删除字符串末尾的空格 
 
-## [Code04_List.py](Code04_List.py)
-### 列表
-#### 列表基本性质
+## 列表
+### [code04_list.py](code04_list.py)
+### 列表基本性质
 1. 列表的定义：中括号包围所有元素，每个元素间用逗号分割
 2. 列表的性质：有序、存储多个元素，元素可以是不同类型
 3. 列表的下标从左往右是从0开始，也可以倒着来，即从右往左从-1开始
@@ -399,7 +399,7 @@ print(li[1])  # b
 print(li[-2])  # 121
 print(li[10])  # IndexError: list index out of range
 ```
-#### 列表的遍历
+### 列表的遍历
 1. for循环遍历
 ````python
 li = ["a", "b", 121, "hello"]
@@ -414,7 +414,7 @@ while i < len(li):
     print(li[i])
     i += 1
 ````
-#### 列表添加元素
+### 列表添加元素
 1. 直接相加：+
 ````python
 language = ["Python", "Java", "C++"]
@@ -448,7 +448,7 @@ print(li1)  # ['aaa', 'bbb', ['ddd', 'tttt']]
 li1.extend(li2)
 print(li1)  # ['aaa', 'bbb', ['ddd', 'tttt'], 'ddd', 'tttt']
 ````
-#### 列表修改元素
+### 列表修改元素
 修改元素的本质就是赋值   
 1. 修改单个元素  
 ````python
@@ -470,7 +470,7 @@ breakfast = ["豆浆", "油条", "包子", "馒头"]
 breakfast[2:2] = ["鸡蛋"]  # 左闭右开
 print(breakfast)  # ['豆浆', '油条', '鸡蛋', '包子', '馒头']
 ````
-#### 列表删除元素
+### 列表删除元素
 1. del
 ````python
 r = list("hello")
@@ -501,7 +501,7 @@ mm = ["Hello", "world", "you"]
 mm.clear()
 print(mm)  # []
 ````
-#### 列表查找元素
+### 列表查找元素
 1. in/not in
 ````python
 find = ["Hello", "world", "you"]
@@ -516,7 +516,7 @@ print("lla" not in find)  # True
 find = ["Hello", "world", "you"]
 print(find.index("he"))  # ValueError: 'he' is not in list
 ````
-#### 列表排序
+### 列表排序
 1. reverse
 ````python
 kk = [1, 2, 3, 4]
@@ -542,17 +542,17 @@ ff1 = sorted(ff)
 print(ff)  # [1, 4, 2, 9, 3]
 print(ff1)  # [1, 2, 3, 4, 9]
 ````
-#### 列表推导式
+### 列表推导式
 ````python
 # 给列表中的每个元素都乘以2
 dd = [1, 2, 3, 4]
 print([i * 2 for i in dd])  # [2, 4, 6, 8]
 ````
-## [Code05_Tuple.py](Code05_Tuple.py)
-### 元组
+## 元组
+### [code05_tuple.py](code05_tuple.py)
 元组是不可变的list类型，不可以增删改。   
 意义：因为元组不支持增删改，所以提高了代码编写的安全性，如果有只读场景，可以考虑使用元组。    
-#### 元组的定义   
+### 元组的定义   
 定义单个元素的元组时要加逗号
 ````python
 # 元组的定义
@@ -563,7 +563,7 @@ print(type(tup1))  # <class 'int'>
 tup1 = (1,)
 print(type(tup1))  # <class 'tuple'>
 ````
-#### 元组的操作
+### 元组的操作
 1. count
 2. index
 3. len
@@ -577,8 +577,8 @@ tt = (3, 5, [99, 88, 77], 6)
 tt[2][0] = 66
 print(tt)  # (3, 5, [66, 88, 77], 6)
 ````
-## [Code06_Dictionary.py](Code06_Dictionary.py)
-### 字典
+## 字典
+### [code06_dictionary.py](code06_dictionary.py)
 就是HashMap
 ````python
 # 定义字典
@@ -586,7 +586,7 @@ dic1 = {}
 dic2 = {"name": "ll", "age": 18}
 dic3 = dict()
 ````
-#### 字典增删改查
+### 字典增删改查
 ````python
 dic3 = dict()
 
@@ -610,7 +610,7 @@ print(dic3)  # {'id': 1}
 dic3.clear()
 print(dic3)  # {}
 ````
-#### 字典常用操作
+### 字典常用操作
 1. len
 ````python
 map = {"id": 2}
@@ -640,10 +640,10 @@ for key, value in items:
 # age 20
 # name MyName
 ```
-## [Code07_Set.py](Code07_Set.py)
-### 集合
+## 集合
+### [code07_set.py](code07_set.py)
 相当于Java中的Set集合，元素无序且不重复
-#### 集合的定义
+### 集合的定义
 ````python
 # 定义集合
 s1 = {10, 20, 30}
@@ -654,7 +654,7 @@ print(s2)  # {'h', 'l', 'o', 'e'}
 # 定义一个空集合
 s3 = set()
 ````
-#### 集合添加元素
+### 集合添加元素
 1. add()
 ````python
 s3 = set()
@@ -673,11 +673,11 @@ print(s4)  # {56, 10, 11, 12}
 s4.update({"name": "Pe"})
 print(s4)  # {56, 10, 11, 12, 'name'}
 ````
-#### 集合删除元素
+### 集合删除元素
 1. remove(obj): 删除指定元素，如果不存在则报错
 2. discard(obj): 删除指定元素，如果不存在不会报错
 3. pop(): 随机删除一个元素，返回删除的元素
-#### 交集、并集
+### 交集、并集
 ````python
 l = {1, 2, 3, 4}
 m = {3, 4, 5, 6}
@@ -702,7 +702,7 @@ print(l | m)  # {1, 2, 3, 4, 5, 6}
 |min|求最小值|列表、元组、集合|
 |enumerate|将下标和数据一一列出来|列表、元组|
 
-## [Code08.py](Code08.py)
+## [code08.py](code08.py)
 ### 类型转换
 1. 转字符串：str(o)
 2. 转列表：list(o)
@@ -768,9 +768,9 @@ python中数值类型、string类型、元组都是不可变对象。
 那就是当修改了变量的值之后，变量的内存地址不会发生改变。  
 python中列表、集合、字典都是可变对象
 
-## [Code09_Function.py](Code09_Function.py)
-### 函数
-#### 函数的定义
+## 函数
+### [code09_function.py](code09_function.py)
+### 函数的定义
 1. 函数与方法的区别：函数是直接调用的，方法是对象调用的，是类里面的
 2. 如果函数有多个返回值，那么将作为一个元组类型被返回
 ````python
@@ -799,7 +799,7 @@ def funb():
 f = funb()
 print(type(f))  # <class 'tuple'>
 ````
-#### 函数的参数
+### 函数的参数
 1. 必填参数
 2. 默认参数
 3. 可选参数
@@ -840,7 +840,7 @@ def person(name, age, *, city, job):
 
 person("Peter", 19, city="beijing", job="coder")
 ````
-#### 作用域
+### 作用域
 1. 名称空间   
 1.1 内置名称空间：随着python解释器启动而产生，停止而回收。第一个被加载  
 1.2 全局的名称空间：随着所在执行文件启动而产生，执行结束而回收，第二个被加载  
@@ -848,7 +848,7 @@ person("Peter", 19, city="beijing", job="coder")
 2. 全局作用域：包含内置命名空间和全局命名空间   
 3. 局部作用域：包含局部命名空间，在函数内可以使用的  
 4. Python查找变量的顺序：局部命名空间-> 全局命名空间-> 内置命名空间   
-#### 全局变量和局部变量
+### 全局变量和局部变量
 ````python
 cup = 100  # 全局变量
 
@@ -903,7 +903,7 @@ def fung():
 fung()
 print(f"water={water}")  # water=500
 ````
-#### 匿名函数
+### 匿名函数
 ````python
 funadd = lambda x, y: x + y
 print(funadd(4, 5))  # 9
@@ -913,7 +913,7 @@ ifelse的lambda用法
 funk = lambda x, y: x if x > y else y
 print(funk(4, 5))  # 5
 ````
-#### 内置函数
+### 内置函数
 1. abs(num) 求绝对值
 2. sum(a,b,c...) 求和
 3. zip 拉链函数
@@ -946,7 +946,7 @@ li = [1, 2, 3, 4]
 for i, num in enumerate(li):
     print(i, num)
 ````
-#### 拆包
+### 拆包
 ````python
 # 拆包
 def funl():
@@ -975,7 +975,7 @@ map = {"name": "Peter", "age": 18}
 a, b = map  # 对字典拆包只有键，没有值
 print(a, b)  # name age
 ````
-#### 异常捕获
+### 异常捕获
 ````python
 # 异常捕获
 def funm():
@@ -991,7 +991,7 @@ else:
 finally:
     print("不管是否发生异常，都会执行的模块")
 ````
-#### 抛出异常
+### 抛出异常
 raise抛出异常
 ````python
 def inputpwd():
@@ -1007,21 +1007,21 @@ try:
 except Exception as e:
     print("发生异常：", e)
 ````
-## [Code10_Module.py](Code10_Module.py)
-### 模块
-#### 内置模块
+## 模块
+### [code10_module.py](code10_module.py)
+### 内置模块
 ````python
 # 查看内置模块
 import builtins
 
 print(dir(builtins))
 ````
-#### 第三方库
+### 第三方库
 使用命令行导入：pip install 模块名   
 使用PyCharm开发时，安装第三方库步骤如下：   
 File -> Settings -> File -> Interpreter
 ![pipinstall.png](pipinstall.png)
-#### 自定义模块
+### 自定义模块
 ```python
 # 自定义模块
 import tools.Timetools as timetools
@@ -1029,12 +1029,12 @@ import tools.Timetools as timetools
 print(timetools.now())
 print(timetools.my_time_zone)
 ```
-#### __name__和__main__
+### __name__和__main__
 
 ### 包
 没啥可讲的
 
-## [Code11.py](Code11.py)
+## [code11.py](code11.py)
 ### 递归函数
 ```python
 # 0——x累加
