@@ -310,3 +310,97 @@ n = N()
 ````
 ## 单例模式
 ### [code03_singleton.py](code03_singleton.py)
+### 实现单例的5种方法
+1. \_\_new__()实现单例模式
+````python
+class DateUtil(object):
+    ins = None
+
+    def __new__(cls, *args, **kwargs):
+        if cls.ins is None:
+            cls.ins = super().__new__(cls)
+        return cls.ins
+
+d1 = DateUtil()
+d2 = DateUtil()
+print(id(d1))
+print(id(d2))
+````
+2. 通过类方法实现单例模式
+````python
+class JsonUtil(object):
+    instance = None
+
+    @classmethod
+    def get_instance(cls):
+        if cls.instance is None:
+            cls.instance = super().__new__(cls)
+        return cls.instance
+
+
+j1 = JsonUtil.get_instance()
+j2 = JsonUtil.get_instance()
+print(id(j1))
+print(id(j2))
+````
+3. 通过装饰器实现单例模式
+````python
+def outer(fn):
+    _ins = {}
+
+    def inner():
+        if fn not in _ins:
+            _ins[fn] = fn()
+        return _ins[fn]
+
+    return inner
+
+
+@outer
+class XxxUtil(object):
+    pass
+
+
+xx1 = XxxUtil()
+xx2 = XxxUtil()
+print(id(xx1))
+print(id(xx2))
+````
+4. 通过导入模块时实现    
+Python中的模块是天然的单例模式，import一次即可。
+5. 通过元类实现   
+hasattr(__object, __name):判断对象object中是否有属性名或方法名叫name的。
+通过元类实现单例，就是在__new()__方法中吧判断None的条件换成使用hasattr
+````python
+class A(object):
+    def __new__(cls, *args, **kwargs):
+        if not hasattr(cls, "ins"):
+            cls.ins = super().__new__(cls)
+        return cls.ins
+
+
+a1 = A()
+a2 = A()
+print(id(a1))
+print(id(a2))
+````
+### 魔术方法
+1. \_\_方法名__ 这类方法叫做魔术方法。
+2. 常见的魔术方法，通过print(dir(A))来查看，其中A是一个类
+3. 一些常见的魔术方法  
+3.1 \_\_doc__: 表示类的描述信息   
+3.2 \_\_module__: 所在模块名   
+3.3 \_\_class__: 所在类   
+3.4 \_\_call__: 能直接用实例()调用
+````python
+class B(object):
+    def __call__(self, *args, **kwargs):
+        print("这是call方法")
+
+
+B()()  # 这是call方法
+````
+3.5__dict__ 查看类或对象中的所有属性。__dict__是dir()的子集，许多内建类如list没有__dict__属性。
+
+## 文件
+### [code04_file.py](code04_file.py)
