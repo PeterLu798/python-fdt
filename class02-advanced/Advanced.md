@@ -528,3 +528,101 @@ os.chdir("../")
 # 获取目录列表
 print(os.listdir())
 ````
+## 迭代器
+### [code05_iterator.py](code05_iterator.py)
+### 可迭代对象Iterable
+可迭代对象的本质就是都是collections模块里的Iterable类创造出来的实例。
+1. 查看是否为可迭代对象
+````python
+from collections.abc import Iterable
+
+print(isinstance([1, 2], Iterable))  # True
+````
+### 迭代器Iterator
+1. 使用iter()方法将可迭代对象创建迭代器
+2. 使用__next()__方法进行遍历
+```python
+list = [1, 4, 5, 2]
+it = iter(list)
+print(it.__next__())
+print(next(it))  # next()方法内部调用了__next__方法
+```
+### 迭代器协议
+1. 迭代器对象是实现了迭代器协议的对象
+2. 迭代器对象必须实现\_\_iter__()方法和\_\_next__()方法
+3. 自定义迭代器
+```python
+from collections.abc import Iterable, Iterator
+
+class Person:
+    def __iter__(self):
+        self.n = 1
+        return self
+
+    def __next__(self):
+        self.n += 1
+        return self.n
+
+
+print(isinstance(Person(), Iterator))  # True
+```
+### 生成器Generator
+生成器是特定的迭代器。  
+迭代器用于从数据集中取出元素，而生成器用于“凭空”生成元素，它不会一次性将所有元素都生成，而是按需一个一个的生成，所以从头到尾只需要占用一个元素空间。   
+1. 如何生成生成器：使用yield关键字
+````python
+"""
+D:/Foo.txt中的内容如下：
+Hello world
+Hello Python
+你好中国
+你好
+Hello u
+hello mimi
+"""
+def search(filepath, word):
+    with open(filepath, encoding="utf-8") as f:
+        for item in f:
+            if word in item:
+                yield item
+
+
+t = search("D:/Foo.txt", "Hello")
+print(next(t), end="")
+print(next(t), end="")
+print(next(t), end="")
+# print(next(t), end="")  # 读结束时，报异常StopIteration
+````
+2. 生成器表达式   
+生成器表达式的创建很简单，只需要吧列表生成式中的[]改成()即可
+````python
+# 列表推导式
+list1 = [i * 2 for i in range(3)]
+print(list1)  # [0, 2, 4]
+
+# 创建生成器表达式
+list2 = (i * 2 for i in range(3))
+print(next(list2))
+print(next(list2))
+print(next(list2))
+````
+3. 使用生成器执行速度更快
+````python
+import time
+def sum1():
+    s1 = time.time()
+    print(sum([i for i in range(10000000)]))
+    print(f"sum1执行时间: {time.time() - s1}")  # sum1执行时间: 0.40175843238830566
+
+
+def sum2():
+    s1 = time.time()
+    print(sum((i for i in range(10000000))))
+    print(f"sum2执行时间: {time.time() - s1}")  # sum2执行时间: 0.3052406311035156
+
+
+sum1()
+sum2()
+````
+## 多线程
+### [code06_thread.py](code06_thread.py)
