@@ -625,4 +625,135 @@ sum1()
 sum2()
 ````
 ## 多线程
+### 创建多线程
 ### [code06_thread.py](code06_thread.py)
+使用threading模块中的Thread类创建出实例对象，然后通过start()方法真正的去产生一个新的线程。    
+Thread的参数：
+1. group: 线程组
+2. target: 执行的目标任务名（可以是方法、继承了Thread的子类）
+3. args: 以元组的方式给执行任务传递参数
+4. *args: 传任意多个参数
+5. kwargs: 以字典方式给执行任务传递参数
+6. name: 线程名      
+
+创建多线程步骤：   
+1. 导入模块 threading
+2. 创建子线程 Thread()类
+3. 设置守护线程 setDaemon(Ture) 设置守护线程时，主线程执行完了，子线程也会跟着结束
+4. 启动子线程 start()
+5. 阻塞主线程 join()：调用方式t1.join()，t1为子线程，阻塞主线程，主线程会等待子线程t1执行完再执行下面的代码
+     
+### 互斥锁
+### [code07_lock.py](code07_lock.py)
+1. 创建一把锁：local = Lock()
+2. 上锁：local.acquire()；解锁：local.release()
+3. 上锁和解锁必须成对出现，上完锁解锁之后才能继续上锁，否则会死锁
+
+## 多进程
+### [code08_process.py](code08_process.py)
+### 创建多进程
+使用multiprocessing模块中的Process创建多进程实例，其参数如下：   
+1. target: 调用对象，即子进程执行的任务
+2. args: 给target指定的函数传递的参数，以元组形式传递
+3. kwargs: 表示调用字典对象
+4. name: 子进程名字
+5. group: 指定进程组   
+
+常见属性  
+1. name: 当前进程别名，默认Process-N
+2. pid: 进程号
+3. ppid: 父进程号     
+
+windows查看进程号  
+```shell
+tasklist
+# 然后ctl+shift+F搜索
+```
+### 进程常用方法
+1. start() 启动进程实例
+2. is_alive() 判断是否活着
+3. join([timeout]) 等待子进程执行结束（在当前位置阻塞主进程）
+4. terminate() 不管任务是否完成，立马终止子进程
+
+### 进程之间不共享全局变量
+```python
+from multiprocessing import Process
+list1 = []
+def listadd():
+    for i in range(10):
+        list1.append(i)
+    print(list1)
+def listprint():
+    print(list1)
+if __name__ == "__main__":
+    p1 = Process(target=listadd)
+    p2 = Process(target=listprint)
+    p1.start()
+    p1.join()
+    p2.start()
+"""
+运行结果：
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[]
+"""
+```
+### 进程间的通信
+#### 队列 Queue
+````python
+from queue import Queue
+
+q = Queue(3)  # 队列：先进先出
+q.put("消息1")  # put用来往队列放数据
+q.put("消息2")
+print(q.full())  # full判断队列是否满了
+q.put("消息3")
+print(q.full())
+
+print(q.get())  # get用来取出队列中的数据
+print(q.get())
+print(q.get())
+print(q.empty())  # empty判断队列是否为空
+print(q.qsize())  # qsize 返回队列当前大小
+````
+#### 使用队列进行进程间通信
+```python
+from multiprocessing import Process, Queue
+def write(queue, list):
+    for i in list:
+        if not queue.full():
+            queue.put(i)
+        else:
+            raise Exception("队列已满")
+
+
+def read(queue):
+    while not queue.empty():
+        print(queue.get())
+
+
+if __name__ == "__main__":
+    queue = Queue(100)
+    li = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+    p1 = Process(target=write, args=(queue, li))
+    p2 = Process(target=read, args=(queue,))
+    p1.start()
+    p1.join()  # 如果这里不等待p1执行完毕，有时候p2先执行会读不到数据
+    p2.start()
+```
+## 进程池
+### [code09_pool.py](code09_pool.py)
+### 进程池的基本操作
+1. 创建进程池：p = Pool(N)，N表示最大进程N个
+2. 异步给进程池提交任务：p.apply_async(target, args),注意args也是以元组形式提交
+3. 从异步方法apply_async获取业务结果，必须使用get()方法
+4. 同步给进程池提交任务：p.apply(target, args)
+5. 从同步方法apply获取业务结果，apply返回值就是业务结果
+6. p.close() 关闭进程池，关闭之后p不再接受新的请求
+7. p.join() 阻塞主进程等待所有子进程执行完毕
+### 进程池间的通信
+进程池间的通信也是使用队列，但是注意使用不同模块下的队列，进程池间的通信使用的是Manager().Queue()
+````python
+from multiprocessing import Manager
+
+queue = Manager().Queue()
+````
