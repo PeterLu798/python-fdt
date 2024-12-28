@@ -757,3 +757,88 @@ from multiprocessing import Manager
 
 queue = Manager().Queue()
 ````
+## 协程
+### [code10_coroutine.py](code10_coroutine.py)
+1. 协程：单线程下的并发
+2. 协程存在的意义：    
+多线程是分时切片的，线程切换需要耗时，如保存状态等   
+协程只使用一个线程，在一个线程中规定代码块执行顺序   
+其次协程能被程序员方便的控制执行顺序
+3. 使用协程的场景：   
+前面说过，**多线程适用的场景是IO密集型作业；多进程适用场景是计算密集型作业**。     
+而协程是线程中的线程，其特点就是切换方便，比多线程更敏捷、高效。所以**面对IO密集型需要频繁切换线程的作业，协程更适合**。
+
+### 创建协程
+#### greenlet 创建协程
+```shell
+# 下载greenlet包
+pip install greenlet
+```
+````python
+from greenlet import greenlet
+def process():
+    print(f"save user")
+    # 切换到g2协程中执行process2
+    g2.switch("pdf", "word")
+    print(f"save order")
+def process2(a, b):
+    print(f"read {a}")
+    print(f"read {b}")
+    # 执行完process2后继续切回g1执行process
+    g1.switch()
+g1 = greenlet(process)
+g2 = greenlet(process2)
+# 先执行g1
+g1.switch()
+````
+#### gevent 创建协程
+```shell
+# 下载gevent包
+pip3 install gevent
+```
+````python
+import gevent
+def funa(n):
+    for i in range(n):
+        print(gevent.getcurrent(), i)
+        # sleep用来模拟一个耗时操作，注意要用gevent的sleep
+        gevent.sleep(1)
+
+
+g3 = gevent.spawn(funa, 2)
+g4 = gevent.spawn(funa, 2)
+g5 = gevent.spawn(funa, 2)
+# 启动协程
+g3.join()
+````
+monkey.patch方法原理：  
+1. monkey patch指的是在执行时动态替换,通常是在startup的时候。
+2. 用过gevent就会知道,会在最开头的地方gevent.monkey.patch_all();把标准库中的thread/socket等给替换掉.这样我们在后面使用socket的时候能够跟寻常一样使用,无需改动不论什么代码,可是它变成非堵塞的了。
+3. 就是把里面的函数转变成gevent协程里面的相同的函数，这样就可以说都变成导入的gevent的函数，gevent是类似一个协程空间，当你用生成协程时，就会在gevent容器空间中生成一个标记好的协程，当多个协程同时存储在容器空间时，gevent就会统一调配CPU的使用，当那个协程出现堵塞时，gevent就会马上切换执行到下一个协程标记中去，实现一个非堵塞的运行gevent容器空间！
+4. gevent到底能实现哪些阻塞方法的平替呢，请直接查看patch_all方法所有参数，True的都是支持的，False的都是不支持的。
+```python
+def patch_all(socket=True, dns=True, time=True, select=True, thread=True, os=True, ssl=True,
+              subprocess=True, sys=False, aggressive=True, Event=True,
+              builtins=True, signal=True,
+              queue=True, contextvars=True,
+              **kwargs):
+    pass
+```
+````python
+import gevent, time
+from gevent import monkey
+monkey.patch_all()
+
+def funa(n):
+    for i in range(n):
+        print(gevent.getcurrent(), i)
+        # 因为前面申明了monkey.patch_all()，所以这里的time.sleep方法被自动替换成了gevent下非阻塞的同名实现函数
+        time.sleep(1)
+
+g3 = gevent.spawn(funa, 2)
+g4 = gevent.spawn(funa, 2)
+g5 = gevent.spawn(funa, 2)
+
+g3.join()
+````
+gevent.joinall方法：待所有协程任务，直到所有协程任务完成后才继续向后执行。
